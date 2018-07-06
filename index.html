@@ -7,7 +7,7 @@
 		<title>Git essentials</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -20,11 +20,307 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+		<style type="text/css">
+			p { text-align: left; }
+			small {text-align: left;}
+ 
+		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
+				<section>
+					<h1>Git Essentials</h1>
+
+					<small>firat atagun</small>
+					<img src="vcs_history.PNG" />
+				</section>
+				<section>
+					<section>
+						<h4>What is Version control system?</h4>
+						<small>A software desinged to tracked changes to set of files over the time. VCS provides ability to revert back to previous states or version.</small>
+						<br/><br/>
+						<small>Back in the days; files/folders were copied and pasted. Then folders were renamed to indicate the version of the project. ie: skynet1, skynet2 etc. That was the way to version control projects. But that was hard to manage, search, find changes and maintain.</small>
+					</section>
+					<section>
+						<small>Local Version Control Systems were developed to store patches of differences made to the file. It was a local database storing content locally. The end result was a join of patch changes. Each patch contained changes to the file. If one of the patches corrupt, possibility to lose the file incurs.</small>
+					</section>
+					<section>
+						<small>Then, Centralized Version Control systems were developed. ie: SVN, CVS. With centralized version control system users push and pull changes to and from a central server. Even though this was a great achievement compared to local version control systems, there were flaws, such as if the centralized server goes down, or files corrupt.</small>
+					</section>
+					<section>
+						<small>To overtome the limitations and introduce better way of working and collaboration, distributed version control systems developed: ie: git, mercurial. With this model every user gets a full copy of the project including full history and branches.</small>
+					</section>
+					<section>
+						<h4>Distribution Model</h4>
+						<span>
+							Local, Centralized, Distributed. 
+						</span>	
+					</section>
+					<section data-background="#21618C"> 
+						<h4>History</h4>
+						<span>
+							 RCS -> CVS -> SVN -> Git
+						</span>	
+					</section>
+				</section>
+				<section>
+					<section>
+						<h4>What is Git?</h4>
+						<small>
+							Git is a distributed version control system. 
+						</small>
+					</section>
+					<section>
+						<p>
+							In fact, git is a content addressable file system with a version control system developed on top it. It has been designed to work with or without a centralized server.
+						</p>
+					</section>
+
+					<section>
+						<p>
+							While CVS and SVN designed to track files, git was designed to track content. 
+						</p>
+					</section>
+
+					<section>
+						<p>
+							While CVS and SVN designed to track files, git was designed to track content. 
+						</p>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h4>Goals</h4>
+						<p class="fragment">
+							<em>Fully distributed</em> 
+						</p> 
+						<p class="fragment">
+							<em>Support non-linear development</em>
+						</p> 
+						<p class="fragment">
+							<em>Handle large projects efficiently.</em>
+						</p> 
+						<p class="fragment">
+							<em>Atomicity</em> Every operation is atomic. 
+						</p> 
+						<p class="fragment">
+							<em>Performance:</em> It is very fast. 
+						</p> 
+						<p class="fragment">
+							<em>Security:</em> Uses checksum and hashing for authenticity. 
+						</p>
+					</section>
+				</section>
+				<section>
+					<h4>Installation</h4>
+					<p>
+						<a href="https://git-scm.com/downloads">Download</a> 
+						<br/>
+						Follow <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git ">instructions</a>  
+					</p>
+				</section>
+				<section>
+					<section>
+						<h4>Getting Started</h4> 
+					</section>
+					<section>
+						<p>Initialize a repository</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git init
+						</code></pre>
+					</section>
+					<section>
+						<p>Add file(s) to it</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git add file.name
+						</code></pre>
+					</section>
+					<section>
+						<p>Commit</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git commit -m "your commit message"
+						</code></pre>
+					</section> 
+					<section>
+						<p>Check Status</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git status 
+						</code></pre>
+						<p>or short status</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git status -s
+						</code></pre>
+					</section> 
+				</section>
+
+				<section>
+					<section>
+						<h4>Break down</h4>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git init
+						</code></pre>
+						<p>Creates a repository of the <em>working area</em>. You will see ".git" folder in your <em>working area</em>. That is your local repository. There are bunch of folders and files in .git folder go manage your source code. </p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git add some.file
+						</code></pre>
+						<p>Adds the file to <em>staging area</em>. You can browse and watch what is happening when you add some files to staging area.</p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git commit -m "my commit message"
+						</code></pre>
+						<p>Commits the file to the <em>repository</em>. Likewise, once commit is done, you can browse the .git folder to see what is the side effect of committing and how it is done.</p>
+					</section>
+					<section> 
+						<p>There are 3 areas in Git namely working area, staging area and repository.</p>
+						<p> <em>Working Area</em> <-> <em>Staging Area</em> <-> <em>Repository</em> </p>
+						<p>Files basically moves right and left between the areas.</p>
+					</section>
+
+				</section>
+
+				<section>
+					<h4>Foundations of Git</h4>
+					<p class="fragment">
+						Commits 
+					</p>
+					<p class="fragment">
+						Snapshots
+					</p>
+					<p class="fragment">
+						References
+					</p>
+				</section>
+				<section>
+					<section>
+						<h4>Git Object Model</h4>
+						<p>Git repository is an object store that holds four kinds of objects: blobs, trees, commits, and tags</p>
+						<p>Everything in Git repository if Object. Objects never change once created, they are immutable.</p>
+					</section>
+					<section>
+						<p>An object has has the following properties.</p>
+						<p>
+							<ul>
+								<li><strong>A type (Blob, Tree, Commit or Tag)</strong></li>
+								<li>Size</li>
+								<li>Content</li>
+							</ul> 
+						</p>
+					</section>
+					<section>
+						<p>Object are represented with SHA1 hashes (40 digit long string) of their content.</p>
+						<p>
+							<ul>
+								<li>Very low chance of collision</li>
+								<li>Usually 6 or 7 character is enough for reference</li> 
+							</ul> 
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h5>Hashing ?</h5>
+						<p>Git uses one way hashing algorithm (SHA1) that makes it almost impossible to derive the original content of objects.</p>
+					</section>
+					<section>
+						<p>Hash of an object always produces same outputs. ie: SHA1("hello world") is universally same. Git tracks content by hashing and checksum.</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h4>Stash</h4>
+						<p>Stash is another area where files can be stored for a while.</p>
+						<p>Stash can be though of stack. It works with push and pop methods.</p>
+						<p>By default only tracked files can be stored in stash. Objects should be indexed first to be stashed.</p>
+					</section>
+					<section>
+						<h5>Stash my current state</h5>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# vim index.html
+	 						# git add index.html
+	 						# git stash
+						</code></pre>
+						<p>index.html is now stashed. Additionally, current commit is checked out.</p>
+					</section>
+					<section>
+						<h5>List of stashes can be seen.</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git stash list
+						</code></pre> 
+					</section>
+					<section>
+						<h5>Recovering from stash</h5>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git stash pop
+	 						# git stash apply
+						</code></pre> 
+					</section>
+					<section>
+						<h5>Delete a stash</h5>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git stash drop
+						</code></pre> 
+					</section>
+					<section>
+						<h5>Delete all stashes</h5>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git stash clear
+						</code></pre> 
+					</section>
+				</section>
+				<section>
+					<section>
+						<h4>Tags</h4>
+						<p>Tags are like branches, however, tags do not move. Tags directly points to a commit.</p>
+						<p>There are two types of tags. One of them is normal the other is annotated which can store metadata such as email, username etc. </p> 
+					</section>
+					<section>
+						<h4>Display tags</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git tag  
+						</code></pre>
+						<p>-n will show annotations<p> 
+					</section>
+					<section>
+						<h4>Create tag</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git tag version.1.0.1  
+						</code></pre> 
+					</section>
+					<section>
+						<h4>Create tag with comment</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git tag -a version.1.0.1  
+						</code></pre> 
+					</section>
+					<section>
+						<h4>Delete a tag</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git tag -d version.1.0.1
+						</code></pre> 
+					</section>
+					<section>
+						<h4>Checkout a tag</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git checkout version.1.0.1
+						</code></pre> 
+					</section>
+					<section>
+						<h4>Checkout a tag and create a branch</h4>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git checkout version.1.0.1 -b NewBranch
+						</code></pre> 
+					</section>
+				</section>
+				<section>Slide 2</section>
+				<section>Slide 2</section>
+				<section>Slide 2</section>
 				<section>Slide 2</section>
 			</div>
 		</div>
@@ -37,11 +333,22 @@
 			// - https://github.com/hakimel/reveal.js#configuration
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
 		</script>
