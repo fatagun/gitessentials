@@ -68,6 +68,37 @@
 						</span>	
 					</section>
 				</section>
+
+				<section>
+					<section>
+						<h4>Storage</h4>
+
+						<p>When talking about version control system we can identity two kinds of storage namely delta storage and DAG (directed acyclic graph).</p>
+					</section>
+					<section>
+						<h5>Delta Storage</h5>
+						<img src="images/deltastorage.png" />
+					</section>
+
+					<section>
+						<h5>Delta Storage Apps</h5>
+						<img src="images/deltastorage_apps.png" />
+					</section>
+
+					<section>
+						<h5>DAG Storage</h5>
+						<img src="images/dagstorage.png" />
+						<small>Git uses snapshot. Every commit is a snapshot of all the files in a repository.</small>
+					</section>
+
+					<section>
+						<h5>DAG Storage Apps</h5>
+						<img src="images/dagstorage_apps.png" /> 
+					</section>
+
+
+				</section>
+
 				<section>
 					<section>
 						<h4>What is Git?</h4>
@@ -417,6 +448,11 @@
 						</p>
 					</section>
 
+					<section>
+						<small>Each commit points to its parents in the history. There can be only one head and history of commits (snapshots)</small>
+						<img src="images/commit_graph.png" />
+					</section>
+
 				</section>
 
 				<section>
@@ -431,17 +467,74 @@
 						<p>If you like to see the parents of a commit you can use ^ (caret sign). If you like see the parent of a parent commit use two of them ^^.</p>
 
 						<pre><code class="hljs" data-trim contenteditable>
-							# #git show 4f62eae1b^
+							# git show 4f62eae1b^
 						</code></pre>
 
 						<pre><code class="hljs" data-trim contenteditable>
-							# #git show 4f62eae1b^^
+							# git show 4f62eae1b^^
 						</code></pre>
 					</section>
 					<section>
 						<p>You can also possible to use numbers.</p>
 						<pre><code class="hljs" data-trim contenteditable>
 							# git show 4f62eae1b^2
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Git log</h5>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log
+						</code></pre>
+						<small>Shows the history of repository and you can easily navigate through commits.</small>
+					</section>
+
+					<section>
+						<small>Git log can take several options and an alias can be created out of them.</small>
+					</section>
+
+					<section>
+						<small>Git log in one line</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log --oneline
+						</code></pre>
+					</section>
+
+					<section>
+						<small>Git log with graph representation</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log --graph
+						</code></pre>
+					</section>
+
+					<section>
+						<small>Git log shows reference information</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log --decorate
+						</code></pre>
+					</section>
+
+					<section>
+						<small>Git log include branches and tags</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log --branches --tags
+						</code></pre>
+					</section>
+
+					<section>
+						<small>Git log with several options</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log --oneline --graph --decorate --branches --tags 
+						</code></pre>
+					</section>
+
+					<section>
+						<small>You can create alias for it.</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git config --global alias.lol "log --oneline --graph --decorate --branches --tags" 
 						</code></pre>
 					</section>
 
