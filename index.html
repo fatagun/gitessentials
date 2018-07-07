@@ -23,7 +23,7 @@
 		<style type="text/css">
 			p { text-align: left; }
 			small {text-align: left;}
- 
+ 			img { border:none;}
 		</style>
 	</head>
 	<body>
@@ -171,30 +171,36 @@
 					<section>
 						<h4>Break down</h4>
 					</section>
+					<section> 
+						<p>There are 3 areas in Git namely working area, staging area and repository.</p>
+						<p> <em>Working Area</em> <-> <em>Staging Area</em> <-> <em>Repository</em> </p>
+						<p>Files basically move right and left between the areas.</p>
+						<img src="images/areas.png" />
+					</section>
 					<section>
 						<pre><code class="hljs" data-trim contenteditable>
 	 						# git init
 						</code></pre>
 						<p>Creates a repository of the <em>working area</em>. You will see ".git" folder in your <em>working area</em>. That is your local repository. There are bunch of folders and files in .git folder go manage your source code. </p>
+						<img src="images/inworkingdirectory.png" />
 					</section>
 					<section>
 						<pre><code class="hljs" data-trim contenteditable>
-	 						# git add some.file
+	 						# git add index.html
 						</code></pre>
 						<p>Adds the file to <em>staging area</em>. You can browse and watch what is happening when you add some files to staging area.</p>
+						<img src="images/instaging.png" />
 					</section>
 					<section>
 						<pre><code class="hljs" data-trim contenteditable>
 	 						# git commit -m "my commit message"
 						</code></pre>
 						<p>Commits the file to the <em>repository</em>. Likewise, once commit is done, you can browse the .git folder to see what is the side effect of committing and how it is done.</p>
+						<img src="images/inrepository.png" />
 					</section>
-					<section> 
-						<p>There are 3 areas in Git namely working area, staging area and repository.</p>
-						<p> <em>Working Area</em> <-> <em>Staging Area</em> <-> <em>Repository</em> </p>
-						<p>Files basically moves right and left between the areas.</p>
+					<section>
+						<p>Commits create hashes which are references to the snapshot of the repository at that point of time.</p>
 					</section>
-
 				</section>
 
 				<section>
@@ -209,6 +215,34 @@
 						References
 					</p>
 				</section>
+				
+				<section>
+					<section>
+						<h5>Hashing ?</h5>
+						<p>
+							Before files are stored in the database, git checksums the file. These checksums are used to refer to the version references.
+						</p>
+						<p>Git uses one way hashing algorithm (SHA1).</p>
+					</section>
+					<section>
+						<p>Hash of an object always produces same outputs. Same data always generates same output. ie: SHA1("hello world") is universally same. Git tracks content by hashing and checksum.</p>
+					</section>
+					<section>
+						<p>Hash of an object always produces same outputs. Same data always generates same output. ie: SHA1("hello world") is universally same. Git tracks content by hashing and checksum.</p>
+					</section>
+					<section>
+						<p>Hash index.html</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git hash-object index.html
+						</code></pre>
+						<p>copy and paste index.html to index2.html</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git hash-object index2.html
+						</code></pre>
+						<p>Git outputs the same hash based on content.</p>
+					</section>
+				</section>
+
 				<section>
 					<section>
 						<h4>Git Object Model</h4>
@@ -234,19 +268,13 @@
 							</ul> 
 						</p>
 					</section>
-				</section>
-				<section>
 					<section>
-						<h5>Hashing ?</h5>
-						<p>
-							Before files are stored in the database, git checksums the file. These checksums are used to refer to the version references.
-						</p>
-						<p>Git uses one way hashing algorithm (SHA1).</p>
-					</section>
-					<section>
-						<p>Hash of an object always produces same outputs. Same data always generates same output. ie: SHA1("hello world") is universally same. Git tracks content by hashing and checksum.</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git
+						</code></pre>
 					</section>
 				</section>
+
 				<section>
 					<section>
 						<h4>Stash</h4>
