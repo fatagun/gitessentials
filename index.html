@@ -24,16 +24,20 @@
 			p { text-align: left; }
 			small {text-align: left;}
  			img { border:none;}
+ 			.pcenter {text-align:  center;}
+ 			.gitimage { height: 60px; }
 		</style>
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h1>Git Essentials</h1>
-
-					<small>firat atagun</small>
-					<img src="vcs_history.PNG" />
+					<h2>Git Essentials</h2>
+					<p class="pcenter">
+						<img src="images/git.png" class="gitimage" />
+					</p>
+					<p class="pcenter"><small>firat atagun</small> </p>
+					
 				</section>
 				<section>
 					<section>
@@ -121,6 +125,36 @@
 						Follow <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git ">instructions</a>  
 					</p>
 				</section>
+
+				<section>
+					<section>
+						<h4>Configuration</h4>
+						<p>
+							Once setup is complete you can start configuring git. 
+						</p>
+					</section>
+
+					<section>
+						<p>Setting up user name and email</p>
+						<pre><code class="hljs"># git config --global user.name username
+# git config --global user.email mailaddress</code></pre>
+						<p>If <em>--global</em> option is left out configuration only applies to the specific repository.</p>
+					</section>
+
+					<section>
+						<p>Setting alias for Commands</p>
+						<pre><code class="hljs" data-trim contenteditable>
+	 						# git config --global alias.aliasname commandname 
+						</code></pre> 
+						<p>For example:<br/>
+<pre><code class="hljs" data-trim contenteditable>
+	 						# git config --global alias.st status 
+						</code></pre>
+						</p>
+					</section>
+
+				</section>
+
 				<section>
 					<h4>GUI Clients</h4>
 					<p>
@@ -269,9 +303,167 @@
 						</p>
 					</section>
 					<section>
+						<p>To see the type of the object:</p>
 						<pre><code class="hljs" data-trim contenteditable>
-	 						# git
+							# git cat-file -t 7f2535f
+							commit
 						</code></pre>
+						<p>To see it in pretty form:</p>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git cat-file -p 7f2535f
+							tree 872303aa715a9a935a3c89194ce9e755af74e85e
+							parent 0d71744d00698cc991f1f5e8f06d8caa38b091f3
+							author firat 1530946207 +0300
+							committer firat 1530946207 +0300
+
+							images
+
+						</code></pre>
+					</section>
+					<section>
+						<p>Using the same approach object model can be traversed.</p>
+						<pre><code class="hljs" data-trim contenteditable>
+							➜  gitessentials git:(master) ✗ git cat-file -p 872303
+							100644 blob e7b4f216ae95408f210f5b463f4afa1a7fbfde72	.gitignore
+							100644 blob 8b137891791fe96927ad78e64b0aad7bded08bdc	README.md
+							040000 tree 3d9b616821d797659f7ecb334ef30e68f3c889a8	css
+							100644 blob 505bb18829e66b94cb430b135823a2a37f448454	demo.html
+							040000 tree 97c67f49e0ef0e66cc58a8db4aa7954f6ac3b26b	images
+							100644 blob f0782a34aad1a96d502715a9283151e266694789	index.html
+							040000 tree cefdab4fcf32c15d3239c92dcbdf0032949ea8b9	js
+							040000 tree da9b393e765c481c8b19f85922bd849cbc120c6b	lib
+							040000 tree bced3065ee3360cf38e6a1c7641a9d7df1f48fca	plugin
+							040000 tree f2a6f41d44e52015ed79e317314f21e68a0fb6c5	test
+							100644 blob d554a3707e36d2848e8a4dc7c1eed65b3639bfac	vcs_history.PNG
+						</code></pre>
+						 
+					</section>
+
+					<section>
+						<p>Finally you can see the content of a blob.</p>
+						
+						<pre><code class="hljs" data-trim contenteditable>
+							# git cat-file -p f0782a
+						</code></pre>
+					</section>
+
+					<section>
+						<h4>Anatomy of a Tree</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Tree</th>
+									<th>Hash</th>
+									<th>Name</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Blob</td>
+									<td>ju23li</td>
+									<td>Index.html</td>
+								</tr>
+								<tr>
+									<td>Tree</td>
+									<td>32re32</td>
+									<td>images</td>
+								</tr>
+								<tr>
+									<td>Tree</td>
+									<td>we3m33</td>
+									<td>css</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+
+					<section>
+						<h4>Anatomy of a Commit</h4>
+						<table>
+							<thead>
+								<tr>
+									<th>Tree</th>
+									<th>Hash</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Tree</td>
+									<td>cc8ee2</td> 
+								</tr>
+								<tr>
+									<td>Parent</td>
+									<td>mkil23</td>
+								</tr>
+								<tr>
+									<td>Author</td>
+									<td>Firat</td>
+								</tr>
+								<tr>
+									<td>Committer</td>
+									<td>Firat</td>
+								</tr>
+								<tr>
+									<td>Commit message</td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+
+					<section>
+						<h4>References</h4>
+						<p>Lightweight movable pointers used by branches, tags, HEAD. References are in <em>.git/refs</em> folder
+						</p>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h4>Contents of a commit</h4>
+						<p>To see contents of a commit: </p>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git show 4f62eae1b 
+						</code></pre>
+					</section>
+					<section>
+						<p>If you like to see the parents of a commit you can use ^ (caret sign). If you like see the parent of a parent commit use two of them ^^.</p>
+
+						<pre><code class="hljs" data-trim contenteditable>
+							# #git show 4f62eae1b^
+						</code></pre>
+
+						<pre><code class="hljs" data-trim contenteditable>
+							# #git show 4f62eae1b^^
+						</code></pre>
+					</section>
+					<section>
+						<p>You can also possible to use numbers.</p>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git show 4f62eae1b^2
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h4>Cherry Picking</h4>
+						<img src="images/cherry-picking.jpg" />
+					</section>
+					<section>
+						<p>It is possible to cherry pick specific commits from different branches.</p>
+					</section>
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git cherry-pick 4f62eae1
+						</code></pre>
+						<p>Cherry picks a commit from another branch.</p>
+						<p><em>-x</em> writes to commit log that the specified commit has been cherry picked.</p>
+					</section>
+					<section>
+						<img src="images/cherrypicking_commits.png">
 					</section>
 				</section>
 
