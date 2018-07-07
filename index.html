@@ -108,7 +108,7 @@
 					</section>
 					<section>
 						<p>
-							In fact, git is a content addressable file system with a version control system developed on top it. It has been designed to work with or without a centralized server.
+							In fact, git is a content addressable file system and a persistent map with a version control system developed on top it. It has been designed to work with or without a centralized server.
 						</p>
 					</section>
 
@@ -174,12 +174,18 @@
 
 					<section>
 						<p>Setting alias for Commands</p>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 	 						# git config --global alias.aliasname commandname 
 						</code></pre> 
 						<p>For example:<br/>
-<pre><code class="hljs" data-trim contenteditable>
+<pre><code class="hljs" data-trim>
 	 						# git config --global alias.st status 
+						</code></pre>
+						</p>
+
+						<p>To view all the configuration options:<br/>
+<pre><code class="hljs" data-trim>
+	 						# git config --list 
 						</code></pre>
 						</p>
 					</section>
@@ -333,6 +339,11 @@
 							</ul> 
 						</p>
 					</section>
+
+					<section>
+						<img src="images/git_object_model.png" />
+					</section>
+
 					<section>
 						<p>To see the type of the object:</p>
 						<pre><code class="hljs" data-trim contenteditable>
@@ -457,6 +468,20 @@
 
 				<section>
 					<section>
+						<h5>Renaming a file</h5>
+						<small>Only a file in staging area can be renamed by Git. If the file is not tracked by repository, you need to renaming with OS capabilities.</small>
+					</section>
+
+					<section>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git mv inde.html index.html
+							# git commit -m "renaming" 
+						</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
 						<h4>Contents of a commit</h4>
 						<p>To see contents of a commit: </p>
 						<pre><code class="hljs" data-trim contenteditable>
@@ -486,7 +511,7 @@
 				<section>
 					<section>
 						<h5>Git log</h5>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 							# git log
 						</code></pre>
 						<small>Shows the history of repository and you can easily navigate through commits.</small>
@@ -538,6 +563,60 @@
 						</code></pre>
 					</section>
 
+					<section>
+						<small>It is possible to view the diff between branches:</small>
+
+						<pre><code class="hljs" data-trim contenteditable>
+							# git log master..feature 
+						</code></pre>
+
+						<small>Speaking of diff...</small>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Git diff</h5>
+						<small>Can be used to view the differences between commits. External programs can be bind to view it in a more visual way.</small>
+					</section>
+
+					<section>
+						<small>
+							Diff between HEAD and one commit earlier
+						</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git diff HEAD HEAD^ 
+						</code></pre>
+					</section>
+
+					<section>
+						<small>
+							Diff between HEAD and two commit earlier
+						</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git diff HEAD HEAD^^ 
+						</code></pre>
+					</section>
+
+					<section>
+						<small>
+							Diff between any commits
+						</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git diff 3e2b 28dd 
+						</code></pre>
+					</section>
+
+					<section>
+						<small>
+							Diff between branches
+						</small>
+						<pre><code class="hljs" data-trim contenteditable>
+							# git diff master develop 
+						</code></pre>
+					</section>
+
 				</section>
 
 				<section>
@@ -557,6 +636,67 @@
 					</section>
 					<section>
 						<img src="images/cherrypicking_commits.png">
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h5>Reference log aka Reflog</h5>
+						<small>Git keeps reference record of all the commits internally in your repository at any time. However, these references can be purged or garbage collected. They are also only local. </small>
+
+						<strong>Use with caution.</strong>
+					</section>
+
+					<section>
+						<small>Reflog becomes handy when you want to rescuse lost data in the history</small>
+
+						<pre><code class="hljs" data-trim>
+	 						# git reflog
+						</code></pre> 
+						<small>
+							Displays the reference logs of commits.
+						</small>
+					</section>
+
+					<section>
+						<small>Any reference can be checkout. </small>
+
+						<pre><code class="hljs" data-trim>
+	 						# git checkout 74c11e0
+						</code></pre> 
+						<small>
+							Entering reflog detaches head. Files can be created and committed but unless merged to any branch they are lost. 
+						</small>
+					</section>
+
+					<section>
+						<small>A commit from detached state or reflog can be cherry-picked with out creating a branch and merging. </small>
+
+						<pre><code class="hljs" data-trim>
+	 						# git cherry-pick 74c11e0
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h5>Checking out commits</h5>
+						<small>Any commit/snapshot can be checkout any given time. However, similar to Reflog, commit can be viewed in detached mode.</small>
+
+						<pre><code class="hljs" data-trim>
+							# git checkout 74c11e0
+							# git checkout HEAD^^
+						</code></pre>
+					</section>
+
+					<section>
+						<h5>Going back to where you left off</h5>
+						<small>Getting out of detached mode or HEAD can be done as following similar to how linux handles history -1. </small>
+
+						<pre><code class="hljs" data-trim>
+							# git checkout -
+						</code></pre>
 					</section>
 				</section>
 
@@ -641,12 +781,14 @@
 					</section>
 					<section>
 						<h4>Checkout a tag and create a branch</h4>
-						<pre><code class="hljs" data-trim contenteditable>
+						<pre><code class="hljs" data-trim>
 	 						# git checkout version.1.0.1 -b NewBranch
 						</code></pre> 
 					</section>
 				</section>
-				<section>Slide 2</section>
+
+
+
 				<section>Slide 2</section>
 				<section>Slide 2</section>
 				<section>Slide 2</section>
