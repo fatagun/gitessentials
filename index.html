@@ -122,6 +122,18 @@
 					</p>
 				</section>
 				<section>
+					<h4>GUI Clients</h4>
+					<p>
+						There are several GUI clients. Some of are:
+						<ul>
+							<li>SourceTree</li>
+							<li>Github Desktop</li>
+							<li>Git Kraken</li>
+							<li>Smart git</li>
+						</ul> 
+					</p>
+				</section>
+				<section>
 					<section>
 						<h4>Getting Started</h4> 
 					</section>
@@ -226,10 +238,13 @@
 				<section>
 					<section>
 						<h5>Hashing ?</h5>
-						<p>Git uses one way hashing algorithm (SHA1) that makes it almost impossible to derive the original content of objects.</p>
+						<p>
+							Before files are stored in the database, git checksums the file. These checksums are used to refer to the version references.
+						</p>
+						<p>Git uses one way hashing algorithm (SHA1).</p>
 					</section>
 					<section>
-						<p>Hash of an object always produces same outputs. ie: SHA1("hello world") is universally same. Git tracks content by hashing and checksum.</p>
+						<p>Hash of an object always produces same outputs. Same data always generates same output. ie: SHA1("hello world") is universally same. Git tracks content by hashing and checksum.</p>
 					</section>
 				</section>
 				<section>
